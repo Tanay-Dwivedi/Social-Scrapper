@@ -6,4 +6,4 @@ Platforms that it can scrap:-
 - Linkedin
 - Instagram
 - GitHub
-- YouTue
+- YouTube
