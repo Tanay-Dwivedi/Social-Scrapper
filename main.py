@@ -47,4 +47,5 @@ sl.subheader("Scrapped Data")
 
 if submit_button:
     scraped_data = get_data(username)
-    sl.write(scraped_data)
+    sl.write(f"Name: {scraped_data[0]}")
+    sl.image(scraped_data[1], width=300, caption="Profile Image")
