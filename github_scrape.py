@@ -1,6 +1,7 @@
 import streamlit as sl
 import requests
 from bs4 import BeautifulSoup
+import re
 
 
 def text_converter(text_data):
@@ -32,11 +33,16 @@ def github_scrapped_data(url):
     github_profile_achievements_badges = [
         img["src"] for img in soup.find_all("img", class_="achievement-badge-sidebar")
     ]
+    github_profile_contributions = soup.find("h2", class_="f4 text-normal mb-2")
+    github_profile_commit_overview = soup.findAll("title")[-1].text.strip()
 
     # text converters
     github_profile_name = text_converter(github_profile_name)
     github_profile_followers = text_converter(github_profile_followers)
     github_profile_following = text_converter(github_profile_following)
+    github_profile_contributions = re.sub(
+        "[^0-9]", "", github_profile_contributions.text.strip()
+    )
 
     profile_info = [
         github_profile_name,
@@ -45,6 +51,8 @@ def github_scrapped_data(url):
         github_profile_followers,
         github_profile_following,
         github_profile_achievements_badges,
+        github_profile_contributions,
+        github_profile_commit_overview,
     ]
 
     return profile_info
