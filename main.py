@@ -20,7 +20,7 @@ def link_converter(username):
     if social_media == "Linkedin":
         return "https://www.linkedin.com/in/" + username + "/"
     elif social_media == "GitHub":
-        return "https://github.com/" + username + "/"
+        return "https://github.com/" + username
     elif social_media == "Instagram":
         return "https://www.instagram.com/" + username + "/"
     else:
@@ -49,3 +49,9 @@ if submit_button:
     scraped_data = get_data(username)
     sl.write(f"Name: {scraped_data[0]}")
     sl.image(scraped_data[1], width=300, caption="Profile Image")
+    sl.write(f"Bio: {scraped_data[2]}")
+    sl.write(f"Followers: {scraped_data[3]}")
+    sl.write(f"Following: {scraped_data[4]}")
+    badges_row = sl.columns(len(scraped_data[5]))
+    for index, link in enumerate(scraped_data[5]):
+        badges_row[index].image(link, width=100, use_column_width=False)
