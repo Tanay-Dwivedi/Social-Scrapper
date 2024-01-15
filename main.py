@@ -57,3 +57,4 @@ if submit_button:
         badges_row[index].image(link, width=100, use_column_width=False)
     sl.write(f"Public Contributions: {scraped_data[6]}")
     sl.write(f"Commit overview: {scraped_data[7][21:]}")
+    sl.write(scraped_data[8])
