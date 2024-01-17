@@ -54,7 +54,20 @@ if submit_button:
     sl.write(f"Following: {scraped_data[4]}")
     badges_row = sl.columns(len(scraped_data[5]))
     for index, link in enumerate(scraped_data[5]):
-        badges_row[index].image(link, width=100, use_column_width=False)
+        badges_row[index].image(link, width=100)
     sl.write(f"Public Contributions: {scraped_data[6]}")
     sl.write(f"Commit overview: {scraped_data[7][21:]}")
-    sl.write(scraped_data[8])
+    for repo in scraped_data[8]:
+        heading = str(repo["serial_number"]) + "- " + repo["name"]
+        with sl.expander(heading):
+            sl.write("URL: " + repo["url"])
+            if repo["description"] == "Data not available":
+                sl.warning("Description of the project is not available")
+            else:
+                sl.write("Description: " + repo["description"])
+
+            if repo["language"] == "Data not available":
+                sl.warning("Programming Language of the project is not available")
+            else:
+                sl.write("Description: " + repo["language"])
+            sl.write("Last updated on: " + repo["last_updated"])
