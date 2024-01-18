@@ -115,18 +115,28 @@ def github_scrapped_data(url):
         github_profile_bio = soup.find(
             "div", class_="p-note user-profile-bio mb-3 js-user-profile-bio f4"
         )["data-bio-text"]
-        href_data_follower = url + "?tab=followers"
-        github_profile_followers = soup.find("a", href=href_data_follower).find(
-            "span", class_="text-bold color-fg-default"
-        )
-        href_data_following = url + "?tab=following"
-        github_profile_following = soup.find("a", href=href_data_following).find(
-            "span", class_="text-bold color-fg-default"
-        )
-        github_profile_achievements_badges = [
-            img["src"]
-            for img in soup.find_all("img", class_="achievement-badge-sidebar")
-        ]
+        try:
+            href_data_follower = url + "?tab=followers"
+            github_profile_followers = soup.find("a", href=href_data_follower).find(
+                "span", class_="text-bold color-fg-default"
+            )
+        except:
+            github_profile_followers = 0
+        try:
+            href_data_following = url + "?tab=following"
+            github_profile_following = soup.find("a", href=href_data_following).find(
+                "span", class_="text-bold color-fg-default"
+            )
+        except:
+            github_profile_following = 0
+
+        try:
+            github_profile_achievements_badges = [
+                img["src"]
+                for img in soup.find_all("img", class_="achievement-badge-sidebar")
+            ]
+        except:
+            github_profile_achievements_badges = []
         github_profile_contributions = soup.find("h2", class_="f4 text-normal mb-2")
         github_profile_commit_overview = soup.findAll("title")[-1].text.strip()
 

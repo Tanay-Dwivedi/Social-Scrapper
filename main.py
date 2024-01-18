@@ -55,11 +55,20 @@ def github_data_onclick():
         sl.write(f"Name: {scraped_data[0]}")
         sl.image(scraped_data[1], width=300, caption="Profile Image")
         sl.write(f"Bio: {scraped_data[2]}")
-        sl.write(f"Followers: {scraped_data[3]}")
-        sl.write(f"Following: {scraped_data[4]}")
-        badges_row = sl.columns(len(scraped_data[5]))
-        for index, link in enumerate(scraped_data[5]):
-            badges_row[index].image(link, width=100)
+        try:
+            sl.write(f"Followers: {scraped_data[3]}")
+        except:
+            sl.warning("Followers not available")
+        try:
+            sl.write(f"Following: {scraped_data[4]}")
+        except:
+            sl.warning("Followings not available")
+        try:
+            badges_row = sl.columns(len(scraped_data[5]))
+            for index, link in enumerate(scraped_data[5]):
+                badges_row[index].image(link, width=100)
+        except:
+            sl.warning("Badges not available")
         sl.write(f"Public Contributions: {scraped_data[6]}")
         sl.write(f"Commit overview: {scraped_data[7][21:]}")
         for repo in scraped_data[8]:
@@ -90,11 +99,14 @@ if submit_button:
         github_data_onclick()
         scrap_time()
     elif social_media == "Instagram":
+        start = time()
         sl.write(get_data(username))
         scrap_time()
     elif social_media == "Linkedin":
+        start = time()
         sl.write(get_data(username))
         scrap_time()
     else:
+        start = time()
         sl.write(get_data(username))
         scrap_time()
