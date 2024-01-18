@@ -5,5 +5,5 @@ A python app building using Streamlit that scraps the data of the users by enter
 Platforms that it can scrap:-
 - Linkedin
 - Instagram
-- GitHub
+- GitHub ✅
 - YouTube
