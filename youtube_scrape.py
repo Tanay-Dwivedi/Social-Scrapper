@@ -1,3 +1,3 @@
 def youtube_scrapped_data(username):
-    data = "Instagram Srapper is currently under build"
+    data = "YouTube Srapper is currently under build"
     return data
