@@ -18,7 +18,7 @@ social_media = sl.selectbox(
     "Social Media Platform", options=["Linkedin", "Instagram", "GitHub", "YouTube"]
 )
 
-with sl.form("Form 1"):
+with sl.form("Form 1", clear_on_submit=True):
     username = sl.text_input("Enter the username")
     submit_button = sl.form_submit_button("Scrape")
 
