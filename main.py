@@ -5,6 +5,10 @@ from instagram_scrape import instagram_scrapped_data
 from linkedin_scrape import linkedin_scrapped_data
 from youtube_scrape import youtube_scrapped_data
 
+sl.set_page_config(
+    page_title="Social Scraper",
+    page_icon="🎎"
+)
 
 sl.markdown(
     """
